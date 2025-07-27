@@ -53,8 +53,8 @@ RUN ln -s ${Z3_DIR}/bin/libz3.so ${Z3_DIR}/bin/libz3.so.4
 
 # Fetch and build
 WORKDIR ${HOME}
-RUN git clone "https://github.com/SVF-tools/Teaching-Software-Analysis.git"
-WORKDIR ${HOME}/Teaching-Software-Analysis
+RUN git clone "https://github.com/SVF-tools/Software-Analysis-Studio.git"
+WORKDIR ${HOME}/Software-Analysis-Studio
 RUN echo "Building ..."
 RUN sed -i 's/lldb/gdb/g' ${HOME}/Teaching-Software-Analysis/.vscode/launch.json
 RUN cmake -DCMAKE_BUILD_TYPE=MinSizeRel .
