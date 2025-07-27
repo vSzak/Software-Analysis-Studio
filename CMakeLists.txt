@@ -162,7 +162,7 @@ include_directories(SYSTEM ${Z3_INCLUDES})
 #   Everything above this line is a general CMake template for SVF ecosystem projects.
 #   Everything below this line is specific to this project (user/application code).
 # ==============================================================================
-
+enable_testing()
 
 add_subdirectory(HelloWorld)
 add_subdirectory(CodeGraph)

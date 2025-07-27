@@ -90,6 +90,7 @@ bool SSE::handleBranch(const IntraCFGEdge* edge) {
 
 	DBOP(std::cout << "@@ Analyzing Branch " << edge->toString() << "\n");
 
+    return true;
 }
 
 /// TODO: Translate AddrStmt, CopyStmt, LoadStmt, StoreStmt, GepStmt and CmpStmt

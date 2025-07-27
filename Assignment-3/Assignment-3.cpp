@@ -74,7 +74,7 @@ void AndersenPTA::solveWorklist() {
 /// snk instruction:  sink(actualParm,...);
 /// return true if actualRet is aliased with any parameter at the snk node (e.g., via ander->alias(..,..))
 bool ICFGTraversal::aliasCheck(const CallICFGNode* src, const CallICFGNode* snk) {
-	
+	return false;
 }
 
 // Start taint checking.
