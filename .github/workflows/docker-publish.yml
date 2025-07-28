@@ -8,7 +8,7 @@ on:
 
 jobs:
   docker-image:
-    if: github.repository == 'SVF-tools/Teaching-Software-Analysis'
+    if: github.repository == 'SVF-tools/Software-Analysis-Studio'
     runs-on: ubuntu-latest
 
     steps:
@@ -35,5 +35,5 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            ${{secrets.DOCKER_USER}}/teaching-software-analysis:latest
-            ${{secrets.DOCKER_USER}}/teaching-software-analysis:latest-arm64
+            ${{secrets.DOCKER_USER}}/software-analysis-studio:latest
+            ${{secrets.DOCKER_USER}}/software-analysis-studio:latest-arm64
