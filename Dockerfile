@@ -21,19 +21,14 @@ ENV build_deps="wget xz-utils git gdb tcl software-properties-common"
 RUN apt-get update --fix-missing
 RUN apt-get install -y $build_deps $lib_deps
 
-# Add deadsnakes PPA for multiple Python versions
+# Add deadsnakes PPA for multiple Python versions 
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update
 RUN set -ex; \
-    if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
-        apt-get update && apt-get install -y python3.10-dev \
-        && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1; \
-    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
-        apt-get update && apt-get install -y python3.8-dev \
-        && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 1; \
-    else \
-        echo "Unsupported platform: $TARGETPLATFORM" && exit 1; \
-    fi
+    apt-get update && apt-get install -y python3.10-dev python3-pip \
+            && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1;
+RUN python3 -m pip install pysvf -i https://test.pypi.org/simple/
+RUN python3 -m pip install z3-solver
 
 # Fetch and build SVF source.
 RUN echo "Downloading LLVM and building SVF to " ${HOME}
@@ -41,7 +36,7 @@ WORKDIR ${HOME}
 RUN git clone "https://github.com/SVF-tools/SVF.git"
 WORKDIR ${HOME}/SVF
 RUN echo "Building SVF ..."
-RUN bash ./build.sh
+RUN bash ./build.sh debug
 
 # Export SVF, llvm, z3 paths
 ENV PATH=${HOME}/SVF/Release-build/bin:$PATH
@@ -51,11 +46,11 @@ ENV LLVM_DIR=${HOME}/SVF/llvm-$llvm_version.obj
 ENV Z3_DIR=${HOME}/SVF/z3.obj
 RUN ln -s ${Z3_DIR}/bin/libz3.so ${Z3_DIR}/bin/libz3.so.4
 
-# Fetch and build
+# Fetch and build Software-Analysis-Studio
 WORKDIR ${HOME}
 RUN git clone "https://github.com/SVF-tools/Software-Analysis-Studio.git"
 WORKDIR ${HOME}/Software-Analysis-Studio
-RUN echo "Building ..."
-RUN sed -i 's/lldb/gdb/g' ${HOME}/Teaching-Software-Analysis/.vscode/launch.json
-RUN cmake -DCMAKE_BUILD_TYPE=MinSizeRel .
+RUN echo "Building Software-Analysis-Studio ..."
+RUN sed -i 's/lldb/gdb/g' ${HOME}/Software-Analysis-Studio/.vscode/launch.json
+RUN cmake -DCMAKE_BUILD_TYPE=Debug .
 RUN make -j8
