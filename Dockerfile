@@ -56,6 +56,6 @@ WORKDIR ${HOME}
 RUN git clone "https://github.com/SVF-tools/Software-Analysis-Studio.git"
 WORKDIR ${HOME}/Software-Analysis-Studio
 RUN echo "Building ..."
-RUN sed -i 's/lldb/gdb/g' ${HOME}/Teaching-Software-Analysis/.vscode/launch.json
-RUN cmake -DCMAKE_BUILD_TYPE=MinSizeRel .
+RUN sed -i 's/lldb/gdb/g' ${HOME}/Software-Analysis-Studio/.vscode/launch.json
+RUN cmake -DCMAKE_BUILD_TYPE=Debug .
 RUN make -j8
