@@ -41,7 +41,7 @@ WORKDIR ${HOME}
 RUN git clone "https://github.com/SVF-tools/SVF.git"
 WORKDIR ${HOME}/SVF
 RUN echo "Building SVF ..."
-RUN bash ./build.sh
+RUN bash ./build.sh debug
 
 # Export SVF, llvm, z3 paths
 ENV PATH=${HOME}/SVF/Release-build/bin:$PATH
