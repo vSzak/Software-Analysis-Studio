@@ -54,3 +54,5 @@ RUN echo "Building Software-Analysis-Studio ..."
 RUN sed -i 's/lldb/gdb/g' ${HOME}/Software-Analysis-Studio/.vscode/launch.json
 RUN cmake -DCMAKE_BUILD_TYPE=Debug .
 RUN make -j8
+
+CMD ["/bin/bash"]

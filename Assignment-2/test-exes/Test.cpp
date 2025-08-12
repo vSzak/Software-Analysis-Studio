@@ -52,6 +52,41 @@ void Test1(std::vector<std::string>& moduleNameVec)
     for(auto path : gt->getPaths())
         std::cerr << path << "\n";
 
+    // get the filename test1.ll or test2.ll or test3.ll
+    std::string fullpath = moduleNameVec[0];
+    std::string filename = fullpath.substr(fullpath.rfind('/') + 1);
+    if (filename == "test1.ll") {
+        // assert if "START->3->4->5->END"
+        assert(gt->getPaths().size() == 1 && "test1.ll Error: path size cannot match");
+        assert(gt->getPaths().count("START->3->4->5->END") 
+               && "Path START->3->4->5->END not found in test1.ll");
+        SVFUtil::outs() << SVFUtil::sucMsg("test1.ll pass\n");
+    }
+    else if (filename == "test2.ll") {
+        // assert if START->3->4->5->6->7->8->9->END
+        // START->3->4->5->6->7->END
+        // START->5->6->7->8->9->END
+        // START->5->6->7->END
+        assert(gt->getPaths().size() == 4 && "test2.ll Error: path size cannot match");
+
+        assert(gt->getPaths().count("START->5->6->7->8->9->END")
+               && "Path START->5->6->7->8->9->END not found in test2.ll");
+        assert(gt->getPaths().count("START->5->6->7->END")
+               && "Path START->5->6->7->END not found in test2.ll");
+        assert(gt->getPaths().count("START->3->4->5->6->7->8->9->END")
+               && "Path START->3->4->5->6->7->8->9->END not found in test2.ll");
+        assert(gt->getPaths().count("START->3->4->5->6->7->END")
+               && "Path START->3->4->5->6->7->END not found in test2.ll");
+        SVFUtil::outs() << SVFUtil::sucMsg("test2.ll pass\n");
+
+    } else if (filename == "test3.ll") {
+        // assert if START->6->7->8->1->5->2->9->10->END
+        assert(gt->getPaths().size() == 1 && "test3.ll Error: path size cannot match");
+        assert(gt->getPaths().count("START->6->7->8->1->5->2->9->10->END")
+               && "Path START->6->7->8->1->5->2->9->10->END not found in test3.ll");
+        SVFUtil::outs() << SVFUtil::sucMsg("test3.ll pass\n");
+    }
+
     SVFIR::releaseSVFIR();
     LLVMModuleSet::releaseLLVMModuleSet();
     delete gt;
