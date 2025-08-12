@@ -5,7 +5,7 @@
             "includePath": [
                 "/usr/local/include/**",
                 "${workspaceFolder}/**",
-                "../SVF/**"
+                "${workspaceFolder}/../SVF/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++",
