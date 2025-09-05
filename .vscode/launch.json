@@ -1,23 +1,50 @@
+// {
+//     "version": "0.2.0",
+//     "configurations": [
+//         {
+//             "name": "(debug) Launch",
+//             "type": "cppdbg",
+//             "request": "launch",
+//             // Please change to the executable of your current lab or assignment
+//             "program": "${workspaceFolder}/bin/ass2",
+//             "args": ["${workspaceFolder}/Assignment-2/test-exes/${input:testFile}"], 
+//             "cwd": "${workspaceFolder}",
+//             "preLaunchTask": "C/C++: cpp build active file",
+//             "MIMode": "gdb",
+//             "setupCommands": [
+//                 {
+//                     "description": "Enable pretty-printing for gdb",
+//                     "text": "-enable-pretty-printing",
+//                     "ignoreFailures": true
+//                 }
+//             ] 
+//         }
+//     ]
+// }
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "(debug) Launch",
-            "type": "cppdbg",
-            "request": "launch",
-            // Please change to the executable of your current lab or assignment
-            "program": "${workspaceFolder}/bin/ass1",
-            "args": ["/home/SVF-tools/Software-Analysis-Studio/Assignment-1/test-exes/test1.graph.txt"], // may input the test llvm bc file or other options and flags the program may use
-            "cwd": "${workspaceFolder}",
-            "preLaunchTask": "C/C++: cpp build active file",
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ] 
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "(debug) Assignment 2",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/ass2",
+      "args": ["${workspaceFolder}/Assignment-2/testcase/bc/${input:testFile}"],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "C/C++: cpp build active file",
+      "MIMode": "gdb",
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true }
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "id": "testFile",
+      "type": "pickString",
+      "description": "Choose the Assignment-2 .ll to run",
+      "options": ["test1.ll", "test2.ll", "test3.ll"],
+      "default": "test1.ll"
+    }
+  ]
 }
