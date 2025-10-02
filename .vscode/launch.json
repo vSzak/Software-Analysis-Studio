@@ -1,35 +1,12 @@
-// {
-//     "version": "0.2.0",
-//     "configurations": [
-//         {
-//             "name": "(debug) Launch",
-//             "type": "cppdbg",
-//             "request": "launch",
-//             // Please change to the executable of your current lab or assignment
-//             "program": "${workspaceFolder}/bin/ass2",
-//             "args": ["${workspaceFolder}/Assignment-2/test-exes/${input:testFile}"], 
-//             "cwd": "${workspaceFolder}",
-//             "preLaunchTask": "C/C++: cpp build active file",
-//             "MIMode": "gdb",
-//             "setupCommands": [
-//                 {
-//                     "description": "Enable pretty-printing for gdb",
-//                     "text": "-enable-pretty-printing",
-//                     "ignoreFailures": true
-//                 }
-//             ] 
-//         }
-//     ]
-// }
 {
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "(debug) Assignment 2",
+      "name": "(debug) Assignment 3",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/bin/ass2",
-      "args": ["${workspaceFolder}/Assignment-2/testcase/bc/${input:testFile}"],
+      "program": "${workspaceFolder}/bin/ass3",
+      "args": ["${input:mode}", "${workspaceFolder}/Assignment-3/Tests/testcases/${input:testFolder}/${input:testFile}"],
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "C/C++: cpp build active file",
       "MIMode": "gdb",
@@ -40,9 +17,23 @@
   ],
   "inputs": [
     {
+      "id": "mode",
+      "type": "pickString",
+      "description": "Choose analysis mode",
+      "options": ["-pta", "-taint"],
+      "default": "-taint"
+    },
+    {
+      "id": "testFolder",
+      "type": "pickString",
+      "description": "Choose folder",
+      "options": ["pta", "taint"],
+      "default": "taint"
+    },
+    {
       "id": "testFile",
       "type": "pickString",
-      "description": "Choose the Assignment-2 .ll to run",
+      "description": "Choose the test .ll file",
       "options": ["test1.ll", "test2.ll", "test3.ll"],
       "default": "test1.ll"
     }
