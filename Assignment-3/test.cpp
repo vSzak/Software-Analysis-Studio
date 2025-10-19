@@ -215,6 +215,11 @@ int main(int argc, char** argv) {
 	                                         arg_value,
 	                                         "Teaching-Software-Analysis Assignment 1",
 	                                         "[options] <input-bitcode...>");
+
+	    //Debug
+    for (auto &m : moduleNameVec)
+        std::cerr << "[ARG] " << m << "\n";
+
 	if (ptaEnabled) {
 		TestPTA(moduleNameVec);
 	}

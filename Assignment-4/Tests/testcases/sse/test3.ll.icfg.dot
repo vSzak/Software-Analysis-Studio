@@ -1,0 +1,36 @@
+digraph "ICFG" {
+	label="ICFG";
+
+	Node0x595b28466720 [shape=record,color=purple,label="{GlobalICFGNode0\nCopyStmt: [Var1 \<-- Var0]  \nConstNullPtrValVar ID: 0\n ptr null \{ constant data \}\nAddrStmt: [Var15 \<-- Var16]  \nConstIntValVar ID: 15\n i32 1 \{ constant data \}\nAddrStmt: [Var11 \<-- Var12]  \nConstIntValVar ID: 11\n i32 0 \{ constant data \}\nAddrStmt: [Var4 \<-- Var5]  \nFunValVar ID: 4\nmain\nAddrStmt: [Var8 \<-- Var9]  \nFunValVar ID: 8\nnd\nAddrStmt: [Var24 \<-- Var25]  \nFunValVar ID: 24\nsvf_assert}"];
+	Node0x595b28466720 -> Node0x595b28475420[style=solid];
+	Node0x595b28475420 [shape=record,color=yellow,label="{FunEntryICFGNode1 \{fun: main\}}"];
+	Node0x595b28475420 -> Node0x595b28466150[style=solid];
+	Node0x595b284af960 [shape=record,color=green,label="{FunExitICFGNode2 \{fun: main\}\nPhiStmt: [Var6 \<-- ([Var11, ICFGNode15],)]  \nValVar ID: 26\n   ret i32 0 }"];
+	Node0x595b28466150 [shape=record,color=red,label="{CallICFGNode3 \{fun: main\}\n   %call = call i32 @nd() CallICFGNode: }"];
+	Node0x595b28466150 -> Node0x595b28476d80[style=solid];
+	Node0x595b28476d80 [shape=record,color=blue,label="{RetICFGNode4 \{fun: main\}\n   %call = call i32 @nd() RetICFGNode: }"];
+	Node0x595b28476d80 -> Node0x595b284464c0[style=solid];
+	Node0x595b284464c0 [shape=record,color=black,label="{IntraICFGNode5 \{fun: main\}\nCmpStmt: [Var10 \<-- (Var7 predicate33 Var11)]  \nValVar ID: 10\n   %tobool = icmp ne i32 %call, 0 }"];
+	Node0x595b284464c0 -> Node0x595b284ab1f0[style=solid];
+	Node0x595b284ab1f0 [shape=record,color=black,label="{IntraICFGNode6 \{fun: main\}\nBranchStmt: [Condition Var10]\nSuccessor 0 ICFGNode7   Successor 1 ICFGNode8   \nValVar ID: 13\n   br i1 %tobool, label %if.then, label %if.end }"];
+	Node0x595b284ab1f0 -> Node0x595b2844c910[style=solid];
+	Node0x595b284ab1f0 -> Node0x595b28459d00[style=solid];
+	Node0x595b2844c910 [shape=record,color=black,label="{IntraICFGNode7 \{fun: main\}\nBinaryOPStmt: [Var14 \<-- (Var15 opcode13 Var15)]  \nValVar ID: 14\n   %inc = add nsw i32 1, 1 }"];
+	Node0x595b2844c910 -> Node0x595b2844e780[style=solid];
+	Node0x595b28459d00 [shape=record,color=black,label="{IntraICFGNode8 \{fun: main\}\nPhiStmt: [Var20 \<-- ([Var14, ICFGNode11],[Var15, ICFGNode6],)]  \nValVar ID: 20\n   %x.0 = phi i32 [ %inc, %if.then ], [ 1, %entry ] }"];
+	Node0x595b28459d00 -> Node0x595b2844ed30[style=solid];
+	Node0x595b2844e780 [shape=record,color=black,label="{IntraICFGNode9 \{fun: main\}\nBinaryOPStmt: [Var17 \<-- (Var15 opcode13 Var15)]  \nValVar ID: 17\n   %inc1 = add nsw i32 1, 1 }"];
+	Node0x595b2844e780 -> Node0x595b2844f850[style=solid];
+	Node0x595b2844ed30 [shape=record,color=black,label="{IntraICFGNode10 \{fun: main\}\nPhiStmt: [Var21 \<-- ([Var17, ICFGNode11],[Var15, ICFGNode6],)]  \nValVar ID: 21\n   %y.0 = phi i32 [ %inc1, %if.then ], [ 1, %entry ] }"];
+	Node0x595b2844ed30 -> Node0x595b2847c990[style=solid];
+	Node0x595b2844f850 [shape=record,color=black,label="{IntraICFGNode11 \{fun: main\}\nBranchStmt: [ Unconditional branch]\nSuccessor 0 ICFGNode8   \nValVar ID: 18\n   br label %if.end }"];
+	Node0x595b2844f850 -> Node0x595b28459d00[style=solid];
+	Node0x595b2847c990 [shape=record,color=black,label="{IntraICFGNode12 \{fun: main\}\nCmpStmt: [Var22 \<-- (Var20 predicate32 Var21)]  \nValVar ID: 22\n   %cmp = icmp eq i32 %x.0, %y.0 }"];
+	Node0x595b2847c990 -> Node0x595b2844e3e0[style=solid];
+	Node0x595b2844e3e0 [shape=record,color=red,label="{CallICFGNode13 \{fun: main\}\n   call void @svf_assert(i1 noundef zeroext %cmp) CallICFGNode: }"];
+	Node0x595b2844e3e0 -> Node0x595b2844fe00[style=solid];
+	Node0x595b2844fe00 [shape=record,color=blue,label="{RetICFGNode14 \{fun: main\}\n   call void @svf_assert(i1 noundef zeroext %cmp) RetICFGNode: }"];
+	Node0x595b2844fe00 -> Node0x595b2845aea0[style=solid];
+	Node0x595b2845aea0 [shape=record,color=black,label="{IntraICFGNode15 \{fun: main\}\n   ret i32 0 }"];
+	Node0x595b2845aea0 -> Node0x595b284af960[style=solid];
+}

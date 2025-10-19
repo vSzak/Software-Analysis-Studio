@@ -2,13 +2,14 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "(debug) Assignment 3",
+      "name": "(debug) Assignment 4 – SSE",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/bin/ass3",
-      "args": ["${input:mode}", "${workspaceFolder}/Assignment-3/Tests/testcases/${input:testFolder}/${input:testFile}"],
+      "program": "${workspaceFolder}/bin/ass4",
+      "args": [
+        "${workspaceFolder}/Assignment-4/Tests/testcases/${input:a4Suite}/${input:a4Base}.${input:a4Ext}"
+      ],
       "cwd": "${workspaceFolder}",
-      "preLaunchTask": "C/C++: cpp build active file",
       "MIMode": "gdb",
       "setupCommands": [
         { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true }
@@ -16,26 +17,8 @@
     }
   ],
   "inputs": [
-    {
-      "id": "mode",
-      "type": "pickString",
-      "description": "Choose analysis mode",
-      "options": ["-pta", "-taint"],
-      "default": "-taint"
-    },
-    {
-      "id": "testFolder",
-      "type": "pickString",
-      "description": "Choose folder",
-      "options": ["pta", "taint"],
-      "default": "taint"
-    },
-    {
-      "id": "testFile",
-      "type": "pickString",
-      "description": "Choose the test .ll file",
-      "options": ["test1.ll", "test2.ll", "test3.ll"],
-      "default": "test1.ll"
-    }
+    { "id": "a4Suite", "type": "pickString", "description": "Choose test suite", "options": ["sse"] },
+    { "id": "a4Base",  "type": "pickString", "description": "Choose testcase base", "options": ["test1","test2","test3"] },
+    { "id": "a4Ext",   "type": "pickString", "description": "Choose file extension", "options": ["ll","svf"] }
   ]
 }
