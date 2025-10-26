@@ -6,6 +6,7 @@ list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/test-sse.cpp")
 set(LIB ${SVF_LIB} ${llvm_libs} ${Z3_LIBRARIES})
 add_library(assign-4 ${SOURCES})
 target_link_libraries(assign-4 ${LIB})
+target_compile_definitions(assign-4 PRIVATE DEBUGINFO) #//addedthis
 set_target_properties(assign-4 PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
         ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
@@ -13,6 +14,7 @@ set_target_properties(assign-4 PROPERTIES
 )
 add_executable(ass4 test-sse.cpp)
 target_link_libraries(ass4 ${LIB} assign-4)
+target_compile_definitions(assign-4 PRIVATE DEBUGINFO) #//addedthis
 set_target_properties(ass4 PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 

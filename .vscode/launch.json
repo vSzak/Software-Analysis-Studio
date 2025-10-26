@@ -1,24 +1,23 @@
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "(debug) Assignment 4 – SSE",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${workspaceFolder}/bin/ass4",
-      "args": [
-        "${workspaceFolder}/Assignment-4/Tests/testcases/${input:a4Suite}/${input:a4Base}.${input:a4Ext}"
-      ],
-      "cwd": "${workspaceFolder}",
-      "MIMode": "gdb",
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true }
-      ]
-    }
-  ],
-  "inputs": [
-    { "id": "a4Suite", "type": "pickString", "description": "Choose test suite", "options": ["sse"] },
-    { "id": "a4Base",  "type": "pickString", "description": "Choose testcase base", "options": ["test1","test2","test3"] },
-    { "id": "a4Ext",   "type": "pickString", "description": "Choose file extension", "options": ["ll","svf"] }
-  ]
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(debug) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/ass4",
+            "args": ["/home/SVF-tools/Software-Analysis-Studio/Assignment-4/Tests/testcases/sse/test3.ll"], // may input the test llvm bc file or other options and flags the program may use
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "C/C++: cpp build active file",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
 }
+
