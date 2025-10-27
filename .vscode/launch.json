@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/bin/ass4",
-            "args": ["/home/SVF-tools/Software-Analysis-Studio/Assignment-4/Tests/testcases/sse/test4.ll"], // may input the test llvm bc file or other options and flags the program may use
+            "args": ["/home/SVF-tools/Software-Analysis-Studio/Assignment-4/Tests/testcases/sse/test2.ll"], // may input the test llvm bc file or other options and flags the program may use
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "C/C++: cpp build active file",
             "MIMode": "gdb",
